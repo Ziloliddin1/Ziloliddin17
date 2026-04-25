@@ -3,198 +3,681 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ziloliddin17 — Kamera va Konditsaner Mutaxassisi, Farg'ona" />
   <title>Ziloliddin17 — Kamera Mutaxassis</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #070709;
+      --surface: #0f0f12;
+      --surface2: #161619;
+      --border: #1e1e24;
+      --border2: #2a2a32;
+      --red: #e02020;
+      --red-dim: #2a1010;
+      --blue: #2060cc;
+      --blue-dim: #0d1828;
+      --green: #1a8a3a;
+      --green-dim: #0a1a10;
+      --text: #f0f0f4;
+      --text2: #888896;
+      --text3: #404050;
+      --accent: #e02020;
+    }
+
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #0a0a0a;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* Animated background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(224,32,32,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224,32,32,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .page {
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       min-height: 100vh;
-      background-image: url('bg.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 52px 24px 48px;
+      padding: 0 0 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* TOP HERO */
+    .hero {
+      width: 100%;
+      background: linear-gradient(180deg, #1a0808 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 36px;
       position: relative;
       overflow: hidden;
     }
 
-    .page::before {
+    .hero::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.72);
+      top: -40px; left: 50%; transform: translateX(-50%);
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(224,32,32,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .avatar {
-      width: 88px;
-      height: 88px;
+    /* Status indicator */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+      animation: fadeDown 0.4s ease both;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px;
       border-radius: 50%;
-      background: #1c1c1c;
-      border: 2px solid #2e2e2e;
+      background: #22cc55;
+      box-shadow: 0 0 8px #22cc55;
+      animation: pulse-dot 2s ease infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px #22cc55; }
+      50% { opacity: 0.6; box-shadow: 0 0 4px #22cc55; }
+    }
+
+    .status-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #22cc55;
+      letter-spacing: 1px;
+    }
+
+    .time-badge {
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.5px;
+      margin-left: 4px;
+    }
+
+    .avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a0808, #2a1010);
+      border: 2px solid var(--red);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      font-weight: 900;
-      color: #c0c0c0;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      color: var(--red);
       margin-bottom: 16px;
-      letter-spacing: 1px;
-      animation: fadeDown 0.6s ease both;
+      animation: fadeDown 0.5s ease both;
+      position: relative;
+    }
+
+    .avatar::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(224,32,32,0.2);
+      animation: rotate-ring 8s linear infinite;
+    }
+
+    @keyframes rotate-ring {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .name {
-      font-size: 22px;
-      font-weight: 900;
-      color: #f2f2f2;
-      letter-spacing: 1px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--text);
+      letter-spacing: 3px;
       margin-bottom: 6px;
-      animation: fadeDown 0.7s ease both;
+      animation: fadeDown 0.6s ease both;
     }
 
     .profession {
-      font-size: 12px;
-      font-weight: 600;
-      color: #555;
-      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text2);
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      margin-bottom: 16px;
-      animation: fadeDown 0.8s ease both;
-    }
-
-    .divider {
-      width: 36px;
-      height: 2px;
-      background: #2a2a2a;
-      border-radius: 2px;
-      margin-bottom: 16px;
-      animation: fadeDown 0.85s ease both;
+      margin-bottom: 20px;
+      animation: fadeDown 0.7s ease both;
     }
 
     .about {
-      font-size: 12.5px;
-      color: #555;
+      font-size: 13px;
+      color: var(--text2);
       text-align: center;
-      max-width: 290px;
+      max-width: 300px;
       line-height: 1.8;
-      margin-bottom: 32px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      gap: 1px;
+      width: calc(100% - 48px);
+      margin: 28px 0 0;
+      background: var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
       animation: fadeDown 0.9s ease both;
+    }
+
+    .stat {
+      flex: 1;
+      background: var(--surface);
+      padding: 16px 8px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--red);
+      letter-spacing: 1px;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text3);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* SECTION */
+    .section {
+      width: 100%;
+      padding: 28px 24px 0;
     }
 
     .section-label {
       font-size: 10px;
       font-weight: 700;
-      color: #333;
+      color: var(--text3);
       letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 16px;
-      animation: fadeDown 0.95s ease both;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* BUTTONS */
     .buttons {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      width: 100%;
-      max-width: 360px;
+      gap: 10px;
     }
 
     .btn {
       display: flex;
       align-items: center;
-      gap: 16px;
-      background: #141414;
-      border: 1px solid #222;
-      border-radius: 60px;
-      padding: 15px 22px;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
-      animation: fadeUp 1s ease both;
+      transition: all 0.2s;
+      animation: fadeUp 0.8s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.02));
+      opacity: 0;
+      transition: opacity 0.2s;
     }
 
     .btn:hover {
-      background: #1a1a1a;
-      border-color: #333;
-      transform: translateY(-2px);
+      background: var(--surface2);
+      border-color: var(--border2);
+      transform: translateY(-1px);
     }
 
+    .btn:hover::before { opacity: 1; }
     .btn:active { transform: scale(0.98); }
 
-    .btn:nth-child(1) { animation-delay: 0.1s; }
-    .btn:nth-child(2) { animation-delay: 0.2s; }
-    .btn:nth-child(3) { animation-delay: 0.3s; }
+    .btn:nth-child(1) { animation-delay: 0.05s; }
+    .btn:nth-child(2) { animation-delay: 0.1s; }
+    .btn:nth-child(3) { animation-delay: 0.15s; }
+    .btn:nth-child(4) { animation-delay: 0.2s; }
+    .btn:nth-child(5) { animation-delay: 0.25s; }
 
     .btn-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+      width: 42px; height: 42px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
 
-    .icon-tg   { background: #162a36; }
-    .icon-tg2  { background: #1a3040; }
-    .icon-call { background: #152a1f; }
-    .icon-sms  { background: #1e1e1e; border: 1px solid #2a2a2a; }
+    .icon-tg   { background: #0d1828; border: 1px solid #1a3040; }
+    .icon-tg2  { background: #0d1828; border: 1px solid #0d2235; }
+    .icon-wa   { background: #0a1a10; border: 1px solid #1a3020; }
+    .icon-call { background: #0a1a10; border: 1px solid #1a3020; }
+    .icon-sms  { background: var(--surface2); border: 1px solid var(--border2); }
+    .icon-cert { background: #2a1010; border: 1px solid #3a1a1a; }
+    .icon-insta { background: #1a0a18; border: 1px solid #2a1028; }
 
     .btn-label { flex: 1; }
 
     .btn-title {
       font-size: 13px;
       font-weight: 700;
-      color: #ddd;
+      color: var(--text);
       letter-spacing: 0.5px;
     }
 
     .btn-sub {
       font-size: 11px;
-      color: #555;
+      color: var(--text2);
       margin-top: 3px;
     }
 
-    svg.ic { width: 18px; height: 18px; fill: #888; }
+    svg.ic { width: 20px; height: 20px; fill: #777; }
 
-    .icon-cert { background: #2a1a1a; }
+    .btn-arrow {
+      color: var(--text3);
+      font-size: 16px;
+    }
 
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      cursor: default;
+      transition: all 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-1px);
+    }
+
+    .service-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .service-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .service-price {
+      font-size: 11px;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    /* DISCOUNT BANNER */
+    .discount-banner {
+      background: linear-gradient(135deg, #1a0808, #2a1010);
+      border: 1px solid #3a1a1a;
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .discount-banner:hover {
+      border-color: var(--red);
+      transform: translateY(-1px);
+    }
+
+    .discount-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      color: var(--red);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .discount-text {
+      flex: 1;
+    }
+
+    .discount-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .discount-sub {
+      font-size: 11px;
+      color: var(--text2);
+    }
+
+    .countdown {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: var(--red);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .countdown-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text3);
+      letter-spacing: 1px;
+      text-align: right;
+    }
+
+    /* REVIEWS */
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .review-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .review-stars {
+      color: #f0a020;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    .review-date {
+      font-size: 10px;
+      color: var(--text3);
+      margin-top: 8px;
+    }
+
+    /* PRICING */
+    .price-list {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .price-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .price-item:last-child { border-bottom: none; }
+    .price-item:hover { background: var(--surface2); }
+
+    .price-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .price-sub {
+      font-size: 11px;
+      color: var(--text2);
+      margin-top: 2px;
+    }
+
+    .price-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: var(--red);
+      letter-spacing: 1px;
+    }
+
+    /* KAFOLAT */
+    .guarantee {
+      background: var(--green-dim);
+      border: 1px solid #1a3020;
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .guarantee-icon { font-size: 32px; flex-shrink: 0; }
+
+    .guarantee-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #22cc66;
+      margin-bottom: 4px;
+    }
+
+    .guarantee-text {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* WORKING HOURS */
+    .hours-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+
+    .hours-day {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hours-time {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .hours-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+
+    .badge-open { background: #0a1a10; color: #22cc66; border: 1px solid #1a3020; }
+    .badge-closed { background: #1a0808; color: #cc4444; border: 1px solid #3a1a1a; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-q:hover { background: var(--surface2); }
+
+    .faq-arrow {
+      color: var(--text3);
+      transition: transform 0.2s;
+      font-size: 14px;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-a { max-height: 200px; }
+
+    .faq-a-inner { padding: 0 16px 14px; border-top: 1px solid var(--border); padding-top: 12px; }
+
+    /* REGION */
+    .region-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .region-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .region-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+    /* MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.88);
+      background: rgba(0,0,0,0.92);
       z-index: 999;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      padding: 20px;
+      padding: 0;
     }
+
     .modal-overlay.open { display: flex; }
 
     .modal-box {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 20px;
-      padding: 24px 20px;
+      background: #111114;
+      border: 1px solid var(--border);
+      border-radius: 24px 24px 0 0;
+      padding: 24px 20px 40px;
       width: 100%;
-      max-width: 380px;
+      max-width: 440px;
       max-height: 88vh;
       overflow-y: auto;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-handle {
+      width: 36px; height: 4px;
+      background: var(--border2);
+      border-radius: 2px;
+      margin: 0 auto 20px;
     }
 
     .modal-header {
@@ -205,29 +688,30 @@
     }
 
     .modal-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #ddd;
-      letter-spacing: 3px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--text);
+      letter-spacing: 2px;
     }
 
     .modal-close {
-      width: 30px; height: 30px;
-      background: #1e1e1e;
-      border: 1px solid #2a2a2a;
+      width: 32px; height: 32px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
       border-radius: 50%;
-      color: #888;
+      color: var(--text2);
       font-size: 15px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .modal-close:hover { background: #252525; color: #ccc; }
+
+    .modal-close:hover { background: var(--border); color: var(--text); }
 
     .cert-card {
-      background: #161616;
-      border: 1px solid #222;
+      background: var(--surface2);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 14px 16px;
       margin-bottom: 10px;
@@ -241,10 +725,10 @@
     }
 
     .hik-logo {
-      font-size: 11px;
-      font-weight: 900;
-      color: #cc0000;
-      letter-spacing: 1px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      color: var(--red);
+      letter-spacing: 2px;
     }
 
     .cert-type {
@@ -254,15 +738,16 @@
       padding: 3px 8px;
       border-radius: 20px;
     }
-    .cert-type.red  { background: #2a1010; color: #cc4444; border: 1px solid #3a1a1a; }
-    .cert-type.blue { background: #101828; color: #4488cc; border: 1px solid #1a2a3a; }
+
+    .cert-type.red  { background: var(--red-dim); color: #cc4444; border: 1px solid #3a1a1a; }
+    .cert-type.blue { background: var(--blue-dim); color: #4488cc; border: 1px solid #1a2a3a; }
 
     .cert-card-name {
-      font-size: 17px;
-      font-weight: 900;
-      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--text);
       margin-bottom: 10px;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
 
     .cert-info-row {
@@ -271,185 +756,641 @@
       margin-bottom: 5px;
     }
 
-    .cert-info-label {
-      font-size: 10px;
-      color: #444;
+    .cert-info-label { font-size: 10px; color: var(--text3); font-weight: 600; letter-spacing: 0.05em; }
+    .cert-info-val { font-size: 10px; color: var(--text2); text-align: right; }
+    .cert-valid { margin-top: 10px; font-size: 11px; color: #3a8a3a; font-weight: 600; }
+
+    /* CALC MODAL */
+    .calc-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .calc-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .calc-row { display: flex; gap: 8px; }
+
+    .calc-option {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      color: var(--text2);
+      cursor: pointer;
+      transition: all 0.15s;
     }
 
-    .cert-info-val {
-      font-size: 10px;
-      color: #888;
-      text-align: right;
+    .calc-option.active {
+      background: var(--red-dim);
+      border-color: var(--red);
+      color: var(--text);
     }
 
-    .cert-valid {
-      margin-top: 10px;
-      font-size: 10px;
-      color: #3a8a3a;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+    .calc-result {
+      background: var(--red-dim);
+      border: 1px solid #3a1a1a;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      display: none;
     }
 
+    .calc-result.show { display: block; }
+
+    .calc-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--red);
+      letter-spacing: 2px;
+    }
+
+    .calc-note { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+    .calc-btn {
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .calc-btn:hover { background: #c01818; transform: translateY(-1px); }
+
+    /* RATING */
+    .rating-display {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .rating-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: #f0a020;
+      line-height: 1;
+    }
+
+    .rating-stars { color: #f0a020; font-size: 18px; letter-spacing: 3px; margin-bottom: 4px; }
+    .rating-count { font-size: 11px; color: var(--text2); }
+
+    /* FOOTER */
     .footer {
       margin-top: 44px;
+      text-align: center;
+    }
+
+    .footer-text {
       font-size: 10px;
-      color: #222;
+      color: var(--text3);
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      color: var(--border2);
+      letter-spacing: 3px;
+      margin-top: 4px;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      z-index: 9999;
+      transition: transform 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
+      from { opacity: 0; transform: translateY(-14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Counter animation */
+    @keyframes countUp {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="status-bar" id="statusBar">
+      <div class="status-dot"></div>
+      <div class="status-text" id="statusText">BO'SH — QABUL QILAMAN</div>
+      <div class="time-badge" id="timeBadge"></div>
+    </div>
 
     <div class="avatar">Z</div>
-    <div class="name">Ziloliddin17</div>
-    <div class="profession">Kamera va Konditsaner xizmatlari</div>
-    <div class="divider"></div>
+    <div class="name">ZILOLIDDIN17</div>
+    <div class="profession">Kamera & Konditsaner Mutaxassisi</div>
     <div class="about">
       Kamera o'rnatish, sozlash va konditsaner xizmatlari bo'yicha mutaxassis.<br>
       Farg'ona bo'ylab tez va sifatli xizmat — kafolat bilan.
     </div>
 
-    <div class="section-label">Bog'lanish</div>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num" data-target="350">0</span>
+        <div class="stat-label">Ish</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="5">0</span>
+        <div class="stat-label">Yil Tajriba</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5★</span>
+        <div class="stat-label">Reyting</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <div class="stat-label">Kafolat</div>
+      </div>
+    </div>
+  </div>
 
+  <!-- CHEGIRMA -->
+  <div class="section">
+    <div class="section-label">Aksiya</div>
+    <div class="discount-banner" onclick="showToast('Aksiya haqida ma\'lumot olish uchun bog\'laning!')">
+      <div class="discount-pct">10%</div>
+      <div class="discount-text">
+        <div class="discount-title">Birinchi xizmatda chegirma!</div>
+        <div class="discount-sub">Yangi mijozlar uchun maxsus taklif</div>
+      </div>
+      <div>
+        <div class="countdown" id="countdown">--:--</div>
+        <div class="countdown-label">QOLDI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOG'LANISH -->
+  <div class="section">
+    <div class="section-label">Bog'lanish</div>
     <div class="buttons">
 
       <a href="https://t.me/ziloliddin_123" class="btn" target="_blank">
         <div class="btn-icon icon-tg2">
-          <svg class="ic" viewBox="0 0 24 24">
-            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
-          </svg>
+          <svg class="ic" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
         </div>
         <div class="btn-label">
           <div class="btn-title">TELEGRAM</div>
           <div class="btn-sub">@ziloliddin_123</div>
         </div>
+        <div class="btn-arrow">›</div>
       </a>
 
       <a href="https://t.me/nematov_200617" class="btn" target="_blank">
         <div class="btn-icon icon-tg">
-          <svg class="ic" viewBox="0 0 24 24">
-            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
-          </svg>
+          <svg class="ic" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
         </div>
         <div class="btn-label">
           <div class="btn-title">TELEGRAM KANAL</div>
           <div class="btn-sub">O'zim haqimda qisqacha...</div>
         </div>
+        <div class="btn-arrow">›</div>
+      </a>
+
+      <a href="https://wa.me/998941629488" class="btn" target="_blank">
+        <div class="btn-icon icon-wa">
+          <svg class="ic" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="btn-label">
+          <div class="btn-title">WHATSAPP</div>
+          <div class="btn-sub">+998 94 162 94 88</div>
+        </div>
+        <div class="btn-arrow">›</div>
       </a>
 
       <a href="tel:+998941629488" class="btn">
         <div class="btn-icon icon-call">
-          <svg class="ic" viewBox="0 0 24 24">
-            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/>
-          </svg>
+          <svg class="ic" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
         </div>
         <div class="btn-label">
           <div class="btn-title">QO'NG'IROQ QILISH</div>
           <div class="btn-sub">+998 94 162 94 88</div>
         </div>
+        <div class="btn-arrow">›</div>
       </a>
 
       <a href="sms:+998941629488" class="btn">
         <div class="btn-icon icon-sms">
-          <svg class="ic" viewBox="0 0 24 24">
-            <path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/>
-          </svg>
+          <svg class="ic" viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/></svg>
         </div>
         <div class="btn-label">
-          <div class="btn-title">SMS XABAR YOZISH</div>
+          <div class="btn-title">SMS YOZISH</div>
           <div class="btn-sub">Xabar yuborish</div>
         </div>
+        <div class="btn-arrow">›</div>
       </a>
 
       <a href="#" class="btn" onclick="document.getElementById('certModal').classList.add('open'); return false;">
         <div class="btn-icon icon-cert">
-          <svg class="ic" viewBox="0 0 24 24" fill="#cc3333">
-            <path d="M12 2C9.24 2 7 4.24 7 7s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm-5.5 5l-1.41 1.41L7.5 18.83V22h2v-3.17l2.41-2.42L10.5 15H6.5zm11 0h-4l-1.41 1.41 2.41 2.42V22h2v-3.17l2.41-2.42L18.5 15z"/>
-          </svg>
+          <svg class="ic" viewBox="0 0 24 24" fill="#cc3333"><path d="M12 2C9.24 2 7 4.24 7 7s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm-5.5 5l-1.41 1.41L7.5 18.83V22h2v-3.17l2.41-2.42L10.5 15H6.5zm11 0h-4l-1.41 1.41 2.41 2.42V22h2v-3.17l2.41-2.42L18.5 15z"/></svg>
         </div>
         <div class="btn-label">
           <div class="btn-title">SERTIFIKATLARIM</div>
           <div class="btn-sub">5 ta Hikvision sertifikat</div>
         </div>
+        <div class="btn-arrow">›</div>
       </a>
 
     </div>
-
-    <div class="footer">© Ziloliddin17</div>
   </div>
-  <div class="modal-overlay" id="certModal" onclick="if(event.target===this)this.classList.remove('open')">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div class="modal-title">SERTIFIKATLARIM</div>
-        <button class="modal-close" onclick="document.getElementById('certModal').classList.remove('open')">✕</button>
-      </div>
 
-      <div class="cert-card">
-        <div class="cert-card-top">
-          <span class="hik-logo">HIKVISION</span>
-          <span class="cert-type red">SECURITY CERTIFICATION</span>
-        </div>
-        <div class="cert-card-name">HCSA-CCTV</div>
-        <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-052025-0998-06-1033</span></div>
-        <div class="cert-valid">✓ May, 2027 gacha amal qiladi</div>
+  <!-- XIZMATLAR -->
+  <div class="section">
+    <div class="section-label">Xizmatlar</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📷</div>
+        <div class="service-name">Kamera O'rnatish</div>
+        <div class="service-price">dan 150,000 so'm</div>
       </div>
-
-      <div class="cert-card">
-        <div class="cert-card-top">
-          <span class="hik-logo">HIKVISION</span>
-          <span class="cert-type blue">GENERAL CERTIFICATION</span>
-        </div>
-        <div class="cert-card-name">CGSA-CCTV</div>
-        <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">CGSA-042025-0998-04-1857</span></div>
-        <div class="cert-valid">✓ April, 2030 gacha amal qiladi</div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Kamera Ta'mirlash</div>
+        <div class="service-price">dan 50,000 so'm</div>
       </div>
-
-      <div class="cert-card">
-        <div class="cert-card-top">
-          <span class="hik-logo">HIKVISION</span>
-          <span class="cert-type red">SECURITY CERTIFICATION</span>
-        </div>
-        <div class="cert-card-name">HCSA-Maintenance</div>
-        <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-052025-0998-04-1488</span></div>
-        <div class="cert-valid">✓ May, 2027 gacha amal qiladi</div>
+      <div class="service-card">
+        <div class="service-icon">❄️</div>
+        <div class="service-name">Konditsaner</div>
+        <div class="service-price">dan 200,000 so'm</div>
       </div>
-
-      <div class="cert-card">
-        <div class="cert-card-top">
-          <span class="hik-logo">HIKVISION</span>
-          <span class="cert-type red">SECURITY CERTIFICATION</span>
-        </div>
-        <div class="cert-card-name">HCSA-SaaS</div>
-        <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-092025-0998-06-2511</span></div>
-        <div class="cert-valid">✓ September, 2027 gacha amal qiladi</div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Sozlash & NVR</div>
+        <div class="service-price">dan 80,000 so'm</div>
       </div>
-
-      <div class="cert-card">
-        <div class="cert-card-top">
-          <span class="hik-logo">HIKVISION</span>
-          <span class="cert-type red">SECURITY CERTIFICATION</span>
-        </div>
-        <div class="cert-card-name">HCSA-LED</div>
-        <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-092025-0998-11-2510</span></div>
-        <div class="cert-valid">✓ September, 2027 gacha amal qiladi</div>
-      </div>
-
     </div>
   </div>
+
+  <!-- NARX KALKULYATOR -->
+  <div class="section">
+    <div class="section-label">Narx Hisoblash</div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px;">
+      <div class="calc-form">
+        <div>
+          <div class="calc-label">Kamera soni</div>
+          <div class="calc-row" id="camCount">
+            <div class="calc-option active" data-val="1">1</div>
+            <div class="calc-option" data-val="2">2</div>
+            <div class="calc-option" data-val="4">4</div>
+            <div class="calc-option" data-val="8">8+</div>
+          </div>
+        </div>
+        <div>
+          <div class="calc-label">Xizmat turi</div>
+          <div class="calc-row" id="serviceType">
+            <div class="calc-option active" data-val="install">O'rnatish</div>
+            <div class="calc-option" data-val="repair">Ta'mirlash</div>
+            <div class="calc-option" data-val="setup">Sozlash</div>
+          </div>
+        </div>
+        <div class="calc-result" id="calcResult">
+          <div class="calc-price" id="calcPrice">150,000 so'm</div>
+          <div class="calc-note">Taxminiy narx • Aniq narx ko'rib chiqiladi</div>
+        </div>
+        <button class="calc-btn" onclick="calcPrice()">NARXNI HISOBLASH</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- KAFOLAT -->
+  <div class="section">
+    <div class="section-label">Kafolat</div>
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <div class="guarantee-title">6 OY KAFOLAT</div>
+        <div class="guarantee-text">Barcha o'rnatish va ta'mirlash ishlari 6 oy kafolat bilan. Muammo bo'lsa — bepul kelaman!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISH VAQTI -->
+  <div class="section">
+    <div class="section-label">Ish Vaqti</div>
+    <div class="hours-card">
+      <div class="hours-row">
+        <div>
+          <div class="hours-day">Dushanba – Juma</div>
+          <div class="hours-time">09:00 – 20:00</div>
+        </div>
+        <span class="hours-badge badge-open">OCHIQ</span>
+      </div>
+      <div class="hours-row">
+        <div>
+          <div class="hours-day">Shanba</div>
+          <div class="hours-time">09:00 – 18:00</div>
+        </div>
+        <span class="hours-badge badge-open">OCHIQ</span>
+      </div>
+      <div class="hours-row">
+        <div>
+          <div class="hours-day">Yakshanba</div>
+          <div class="hours-time">Muzokaraga ko'ra</div>
+        </div>
+        <span class="hours-badge badge-open">BOG'LANING</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- XIZMAT HUDUDI -->
+  <div class="section">
+    <div class="section-label">Xizmat Hududi</div>
+    <div class="region-list">
+      <div class="region-chip"><div class="region-dot"></div>Farg'ona shahar</div>
+      <div class="region-chip"><div class="region-dot"></div>Marg'ilon</div>
+      <div class="region-chip"><div class="region-dot"></div>Qo'qon</div>
+      <div class="region-chip"><div class="region-dot"></div>Quva</div>
+      <div class="region-chip"><div class="region-dot"></div>Rishton</div>
+      <div class="region-chip"><div class="region-dot"></div>Beshariq</div>
+    </div>
+  </div>
+
+  <!-- REYTINGLAR -->
+  <div class="section">
+    <div class="section-label">Mijozlar Fikri</div>
+    <div class="rating-display">
+      <div class="rating-big">5.0</div>
+      <div>
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-count">120+ sharh asosida</div>
+      </div>
+    </div>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-name">Bobur T.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <div class="review-text">Tez keldi, sifatli o'rnatdi. 4 ta kamera, hammasi perfect ishlayapti. Tavsiya qilaman!</div>
+        <div class="review-date">2 hafta oldin</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-name">Dilnoza M.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <div class="review-text">Konditsaner xizmati uchun chaqirdim. Juda professional, narxi ham adolatli. Rahmat!</div>
+        <div class="review-date">1 oy oldin</div>
+      </div>
+      <div class="review-card">
+        <div class="review-top">
+          <div class="review-name">Sardor N.</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <div class="review-text">Do'konimizdagi kameralarga NVR uladi va telefonga sozlab berdi. Hamma narsa ishlayapti!</div>
+        <div class="review-date">2 oy oldin</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-label">Ko'p So'raladigan Savollar</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Kamera o'rnatish qancha vaqt oladi?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">1–4 ta kamera uchun odatda 1–2 soat. Ko'proq kamera bo'lsa, yarim kun yoki bir kun. Aniq vaqt ob'ektni ko'rib belgilanadi.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Kamerani telefonga ulash mumkinmi?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Ha, albatta! Har qanday smartfonga Hikvision ilovasi orqali ulash va real vaqtda ko'rish imkonini beraman.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Kafolat necha oy?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Barcha ishlarga 6 oy kafolat. Muammo yuzaga kelsa, bepul kelib ko'raman va tuzataman.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Farg'onadan tashqari ham borasizmi?
+          <span class="faq-arrow">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">Ha, Farg'ona viloyatining barcha shahar va tumanlariga chiqaman. Masofaga qarab yo'l haqi kelishiladi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">professional xizmat</div>
+    <div class="footer-brand">© ZILOLIDDIN17</div>
+  </div>
+
+</div>
+
+<!-- CERT MODAL -->
+<div class="modal-overlay" id="certModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title">SERTIFIKATLARIM</div>
+      <button class="modal-close" onclick="document.getElementById('certModal').classList.remove('open')">✕</button>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-card-top"><span class="hik-logo">HIKVISION</span><span class="cert-type red">SECURITY</span></div>
+      <div class="cert-card-name">HCSA-CCTV</div>
+      <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-052025-0998-06-1033</span></div>
+      <div class="cert-valid">✓ May, 2027 gacha amal qiladi</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-card-top"><span class="hik-logo">HIKVISION</span><span class="cert-type blue">GENERAL</span></div>
+      <div class="cert-card-name">CGSA-CCTV</div>
+      <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">CGSA-042025-0998-04-1857</span></div>
+      <div class="cert-valid">✓ April, 2030 gacha amal qiladi</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-card-top"><span class="hik-logo">HIKVISION</span><span class="cert-type red">SECURITY</span></div>
+      <div class="cert-card-name">HCSA-Maintenance</div>
+      <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-052025-0998-04-1488</span></div>
+      <div class="cert-valid">✓ May, 2027 gacha amal qiladi</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-card-top"><span class="hik-logo">HIKVISION</span><span class="cert-type red">SECURITY</span></div>
+      <div class="cert-card-name">HCSA-SaaS</div>
+      <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-092025-0998-06-2511</span></div>
+      <div class="cert-valid">✓ September, 2027 gacha amal qiladi</div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-card-top"><span class="hik-logo">HIKVISION</span><span class="cert-type red">SECURITY</span></div>
+      <div class="cert-card-name">HCSA-LED</div>
+      <div class="cert-info-row"><span class="cert-info-label">RAQAM</span><span class="cert-info-val">HCSA-092025-0998-11-2510</span></div>
+      <div class="cert-valid">✓ September, 2027 gacha amal qiladi</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // STATUS BAR — vaqtga qarab
+  function updateStatus() {
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const timeStr = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    document.getElementById('timeBadge').textContent = timeStr;
+
+    const statusText = document.getElementById('statusText');
+    const statusDot = document.querySelector('.status-dot');
+
+    if (h >= 9 && h < 20) {
+      statusText.textContent = "BO'SH — QABUL QILAMAN";
+      statusDot.style.background = '#22cc55';
+      statusDot.style.boxShadow = '0 0 8px #22cc55';
+    } else {
+      statusText.textContent = "ERTAGA 09:00 DAN";
+      statusText.style.color = '#888';
+      statusDot.style.background = '#888';
+      statusDot.style.boxShadow = 'none';
+    }
+  }
+  updateStatus();
+  setInterval(updateStatus, 30000);
+
+  // COUNTDOWN — aksiya tugashiga
+  function updateCountdown() {
+    const now = new Date();
+    const end = new Date(now);
+    end.setHours(23, 59, 59, 0);
+    const diff = end - now;
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  // COUNTER ANIMATION
+  function animateCounters() {
+    document.querySelectorAll('[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      let current = 0;
+      const step = Math.ceil(target / 40);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current + (target === 350 ? '+' : '');
+        if (current >= target) clearInterval(timer);
+      }, 30);
+    });
+  }
+  setTimeout(animateCounters, 600);
+
+  // FAQ TOGGLE
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // CALC OPTIONS
+  document.querySelectorAll('#camCount .calc-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('#camCount .calc-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('#serviceType .calc-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('#serviceType .calc-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+
+  function calcPrice() {
+    const cam = document.querySelector('#camCount .calc-option.active')?.dataset.val || '1';
+    const type = document.querySelector('#serviceType .calc-option.active')?.dataset.val || 'install';
+
+    const base = { install: 150000, repair: 50000, setup: 80000 };
+    const multiplier = { '1': 1, '2': 1.8, '4': 3.2, '8': 5.5 };
+
+    const price = Math.round(base[type] * (multiplier[cam] || 1));
+    const formatted = price.toLocaleString('uz-UZ') + ' so\'m';
+
+    const result = document.getElementById('calcResult');
+    document.getElementById('calcPrice').textContent = formatted;
+    result.classList.add('show');
+  }
+
+  // TOAST
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // GREETING
+  const h = new Date().getHours();
+  const greeting = h < 12 ? 'Xayrli tong!' : h < 17 ? 'Xayrli kun!' : 'Xayrli kech!';
+  setTimeout(() => showToast(greeting + ' 👋'), 1000);
+</script>
 
 </body>
 </html>
