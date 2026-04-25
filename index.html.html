@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ziloliddin17 — Kamera Mutaxassis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 420px;
+      min-height: 100vh;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(80,80,80,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #1c1c1c;
+      border: 2px solid #2e2e2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 900;
+      color: #c0c0c0;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #f2f2f2;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      animation: fadeDown 0.7s ease both;
+    }
+
+    .profession {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .divider {
+      width: 36px;
+      height: 2px;
+      background: #2a2a2a;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      animation: fadeDown 0.85s ease both;
+    }
+
+    .about {
+      font-size: 12.5px;
+      color: #555;
+      text-align: center;
+      max-width: 290px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      animation: fadeDown 0.9s ease both;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #333;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: fadeDown 0.95s ease both;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 60px;
+      padding: 15px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      animation: fadeUp 1s ease both;
+    }
+
+    .btn:hover {
+      background: #1a1a1a;
+      border-color: #333;
+      transform: translateY(-2px);
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn:nth-child(1) { animation-delay: 0.1s; }
+    .btn:nth-child(2) { animation-delay: 0.2s; }
+    .btn:nth-child(3) { animation-delay: 0.3s; }
+
+    .btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-tg   { background: #162a36; }
+    .icon-call { background: #152a1f; }
+    .icon-sms  { background: #1e1e1e; border: 1px solid #2a2a2a; }
+
+    .btn-label { flex: 1; }
+
+    .btn-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ddd;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-sub {
+      font-size: 11px;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    svg.ic { width: 18px; height: 18px; fill: #888; }
+
+    .footer {
+      margin-top: 44px;
+      font-size: 10px;
+      color: #222;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="avatar">Z</div>
+    <div class="name">Ziloliddin17</div>
+    <div class="profession">Kamera va Konditsaner xizmatlari</div>
+    <div class="divider"></div>
+    <div class="about">
+      Kamera o'rnatish, sozlash va konditsaner xizmatlari bo'yicha mutaxassis.<br>
+      Farg'ona bo'ylab tez va sifatli xizmat — kafolat bilan.
+    </div>
+
+    <div class="section-label">Bog'lanish</div>
+
+    <div class="buttons">
+
+      <a href="https://t.me/nematov_200617" class="btn" target="_blank">
+        <div class="btn-icon icon-tg">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+          </svg>
+        </div>
+        <div class="btn-label">
+          <div class="btn-title">TELEGRAM KANAL</div>
+          <div class="btn-sub">O'zim haqimda qisqacha...</div>
+        </div>
+      </a>
+
+      <a href="tel:+998941629488" class="btn">
+        <div class="btn-icon icon-call">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/>
+          </svg>
+        </div>
+        <div class="btn-label">
+          <div class="btn-title">QO'NG'IROQ QILISH</div>
+          <div class="btn-sub">+998 94 162 94 88</div>
+        </div>
+      </a>
+
+      <a href="sms:+998941629488" class="btn">
+        <div class="btn-icon icon-sms">
+          <svg class="ic" viewBox="0 0 24 24">
+            <path d="M20 2H4a2 2 0 00-2 2v18l4-4h14a2 2 0 002-2V4a2 2 0 00-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/>
+          </svg>
+        </div>
+        <div class="btn-label">
+          <div class="btn-title">SMS XABAR YOZISH</div>
+          <div class="btn-sub">Xabar yuborish</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="footer">© Ziloliddin17</div>
+  </div>
+</body>
+</html>
