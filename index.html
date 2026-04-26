@@ -909,6 +909,7 @@
       bottom: 90px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
+      opacity: 0;
       background: var(--surface2);
       border: 1px solid var(--border2);
       border-radius: 100px;
@@ -917,11 +918,16 @@
       font-weight: 600;
       color: var(--text);
       z-index: 9999;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, opacity 0.3s ease;
       white-space: nowrap;
+      pointer-events: none;
     }
 
-    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
 
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-14px); }
@@ -1760,11 +1766,16 @@
   }
 
   // TOAST
+  let toastTimer = null;
   function showToast(msg) {
     const t = document.getElementById('toast');
+    if (toastTimer) clearTimeout(toastTimer);
     t.textContent = msg;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
+    toastTimer = setTimeout(() => {
+      t.classList.remove('show');
+      toastTimer = null;
+    }, 3000);
   }
 
   // GREETING
