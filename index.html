@@ -878,6 +878,14 @@
     .footer {
       margin-top: 44px;
       text-align: center;
+      padding-bottom: 40px;
+    }
+
+    .footer-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
     }
 
     .footer-text {
@@ -955,10 +963,18 @@
 
     /* STICKY CALL */
     .sticky-cta {
-      position: fixed; bottom: 20px; left: calc(50% - 30px); transform: translateX(-50%);
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 440px;
+      padding: 0 16px;
       z-index: 888;
-      display: flex; gap: 10px;
-      animation: fadeUp 1s ease 1.8s both;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      box-sizing: border-box;
     }
     .sticky-btn {
       display: flex; align-items: center; gap: 8px;
@@ -1143,6 +1159,7 @@
 </div>
 
 <!-- STICKY CALL -->
+
 <div class="sticky-cta" id="stickyCta">
   <a href="tel:+998941629488" class="sticky-btn sticky-call">
     <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
@@ -1851,10 +1868,8 @@
 
   // HIDE STICKY CTA when scrolled to top
   window.addEventListener('scroll', () => {
-    const cta = document.getElementById('stickyCta');
-    if (cta) cta.style.opacity = window.scrollY > 100 ? '1' : '0';
+    // static button, no opacity change needed
   });
-  document.getElementById('stickyCta').style.opacity = '0';
 </script>
 
 </body>
