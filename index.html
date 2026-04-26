@@ -908,6 +908,48 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    /* VISITOR COUNTER */
+    .visitor-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px 6px 10px;
+      animation: fadeDown 1s ease both;
+    }
+
+    .visitor-eye {
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .visitor-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: var(--red);
+      letter-spacing: 1px;
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .visitor-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text3);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .visitor-dot {
+      width: 1px;
+      height: 14px;
+      background: var(--border2);
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
@@ -947,6 +989,14 @@
         <span class="stat-num">100%</span>
         <div class="stat-label">Kafolat</div>
       </div>
+    </div>
+
+    <!-- VISITOR COUNTER -->
+    <div class="visitor-chip">
+      <span class="visitor-eye">👁</span>
+      <span class="visitor-num" id="visitorCount">—</span>
+      <div class="visitor-dot"></div>
+      <span class="visitor-label">Tashrifchi</span>
     </div>
   </div>
 
@@ -1361,6 +1411,25 @@
   const h = new Date().getHours();
   const greeting = h < 12 ? 'Xayrli tong!' : h < 17 ? 'Xayrli kun!' : 'Xayrli kech!';
   setTimeout(() => showToast(greeting + ' 👋'), 1000);
+
+  // VISITOR COUNTER
+  fetch('https://api.countapi.xyz/hit/ziloliddin17-profile/page-visits')
+    .then(r => r.json())
+    .then(d => {
+      if (d && d.value) {
+        const el = document.getElementById('visitorCount');
+        const target = d.value;
+        let current = Math.max(0, target - 30);
+        const timer = setInterval(() => {
+          current = Math.min(current + 1, target);
+          el.textContent = current.toLocaleString('uz-UZ');
+          if (current >= target) clearInterval(timer);
+        }, 40);
+      }
+    })
+    .catch(() => {
+      document.getElementById('visitorCount').textContent = '—';
+    });
 </script>
 
 </body>
