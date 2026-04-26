@@ -1412,24 +1412,34 @@
   const greeting = h < 12 ? 'Xayrli tong!' : h < 17 ? 'Xayrli kun!' : 'Xayrli kech!';
   setTimeout(() => showToast(greeting + ' 👋'), 1000);
 
-  // VISITOR COUNTER
-  fetch('https://api.countapi.xyz/hit/ziloliddin17-profile/page-visits')
-    .then(r => r.json())
-    .then(d => {
-      if (d && d.value) {
-        const el = document.getElementById('visitorCount');
-        const target = d.value;
-        let current = Math.max(0, target - 30);
+  // VISITOR COUNTER — counterapi.dev (ishonchli bepul xizmat)
+  async function loadVisitorCount() {
+    const el = document.getElementById('visitorCount');
+    try {
+      const res = await fetch('https://api.counterapi.dev/v1/ziloliddin17-profile/visits/up', {
+        method: 'GET'
+      });
+      const d = await res.json();
+      const target = d.count || 0;
+      if (target > 0) {
+        let current = Math.max(0, target - 20);
         const timer = setInterval(() => {
           current = Math.min(current + 1, target);
           el.textContent = current.toLocaleString('uz-UZ');
           if (current >= target) clearInterval(timer);
         }, 40);
+      } else {
+        el.textContent = '1';
       }
-    })
-    .catch(() => {
-      document.getElementById('visitorCount').textContent = '—';
-    });
+    } catch (e) {
+      // Fallback: localStorage orqali faqat shu qurilmada sanaydi
+      const key = 'zil17_visits';
+      let count = parseInt(localStorage.getItem(key) || '0') + 1;
+      localStorage.setItem(key, count);
+      el.textContent = count.toLocaleString('uz-UZ');
+    }
+  }
+  loadVisitorCount();
 </script>
 
 </body>
