@@ -364,13 +364,37 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 16px;
-      cursor: default;
+      cursor: pointer;
       transition: all 0.2s;
     }
 
     .service-card:hover {
-      border-color: var(--border2);
-      transform: translateY(-1px);
+      border-color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .service-order-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      background: var(--red-dim);
+      border: 1px solid #3a1a1a;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .service-order-btn:hover {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
     }
 
     .service-icon {
@@ -1093,6 +1117,79 @@
     .form-submit:hover { background: #c01818; transform: translateY(-1px); }
     .form-note { font-size: 11px; color: var(--text3); text-align: center; margin-top: -4px; }
 
+
+    /* WHY ME */
+    .why-me-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 14px;
+      transition: all 0.2s;
+    }
+
+    .why-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-1px);
+    }
+
+    .why-icon { font-size: 22px; margin-bottom: 8px; }
+    .why-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .why-text { font-size: 11px; color: var(--text2); line-height: 1.5; }
+
+    /* AFTER REVIEWS CTA */
+    .after-review-cta {
+      background: linear-gradient(135deg, #1a0808, #2a1010);
+      border: 1px solid #3a1a1a;
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .arc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: var(--text);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .arc-sub {
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .arc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 12px 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .arc-btn:hover {
+      background: #c01818;
+      transform: translateY(-2px);
+    }
+
     /* SHARE SECTION */
     .share-row { display: flex; gap: 10px; }
     .share-btn {
@@ -1460,30 +1557,72 @@
   <div class="section">
     <div class="section-label">Xizmatlar</div>
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card" onclick="orderService('Kamera o\'rnatish')">
         <div class="service-icon">📷</div>
         <div class="service-name">Kamera O'rnatish</div>
-        <div class="service-price">150.000 so'mdan boshlanadi</div>
+        <div class="service-price">150.000 so'mdan</div>
+        <span class="service-order-btn">📲 Buyurtma</span>
       </div>
-      <div class="service-card">
+      <div class="service-card" onclick="orderService('Kamera ta\'mirlash / sozlash')">
         <div class="service-icon">🔧</div>
         <div class="service-name">Kamera Ta'mirlash</div>
-        <div class="service-price">50.000 so'mdan boshlanadi</div>
+        <div class="service-price">50.000 so'mdan</div>
+        <span class="service-order-btn">📲 Buyurtma</span>
       </div>
-      <div class="service-card">
+      <div class="service-card" onclick="orderService('Konditsaner o\'rnatish')">
         <div class="service-icon">❄️</div>
         <div class="service-name">Konditsaner</div>
-        <div class="service-price">200.000 so'mdan boshlanadi</div>
+        <div class="service-price">200.000 so'mdan</div>
+        <span class="service-order-btn">📲 Buyurtma</span>
       </div>
-      <div class="service-card">
+      <div class="service-card" onclick="orderService('NVR / DVR ulash')">
         <div class="service-icon">⚙️</div>
         <div class="service-name">Sozlash & NVR</div>
-        <div class="service-price">80.000 so'mdan boshlanadi</div>
+        <div class="service-price">80.000 so'mdan</div>
+        <span class="service-order-btn">📲 Buyurtma</span>
       </div>
     </div>
   </div>
 
 
+
+
+  <!-- NEGA MEN? -->
+  <div class="section">
+    <div class="section-label">Nega Aynan Men?</div>
+    <div class="why-me-grid">
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <div class="why-title">5 Sertifikat</div>
+        <div class="why-text">Hikvision tomonidan rasmiy tasdiqlangan mutaxassis</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Tez Xizmat</div>
+        <div class="why-text">Bugun murojaat — shu kuni yoki ertasi kuni bajariladi</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">6 Oy Kafolat</div>
+        <div class="why-text">Ish tugagach kafolat beriladi. Muammo chiqsa qayta chaqiring — kelamiz</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Adolatli Narx</div>
+        <div class="why-text">Bozordagi eng past narx. Yashirin to'lovlar yo'q</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <div class="why-title">Telefonga Ulash</div>
+        <div class="why-text">Har qanday kamerani smartfonga real vaqt ko'rish uchun ulash</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">350+</div>
+        <div class="why-title">Muvaffaq Ish</div>
+        <div class="why-text">5 yil tajriba, 350+ bajarilgan loyiha</div>
+      </div>
+    </div>
+  </div>
 
   <!-- KAFOLAT -->
   <div class="section">
@@ -1575,6 +1714,15 @@
       </div>
     </div>
   </div>
+
+
+    <div class="after-review-cta">
+      <div class="arc-title">SIZ HAM BUYURTMA BERING!</div>
+      <div class="arc-sub">120+ mamnun mijoz sizni ham kutmoqda. Bugun murojaat eting — bugun xizmat!</div>
+      <a href="https://t.me/ziloliddin_123" target="_blank" class="arc-btn">
+        📲 Hoziroq Bog'lanish
+      </a>
+    </div>
 
   <!-- FAQ -->
   <div class="section">
@@ -1701,15 +1849,27 @@
   updateStatus();
   setInterval(updateStatus, 30000);
 
-  // COUNTDOWN — aksiya tugashiga
+  // COUNTDOWN — haqiqiy aksiya (haftalik, yashirilmaydi)
   function updateCountdown() {
     const now = new Date();
+    // Keyingi yakshanba kechki 23:59 gacha
+    const daysUntilSunday = (7 - now.getDay()) % 7 || 7;
     const end = new Date(now);
+    end.setDate(now.getDate() + daysUntilSunday);
     end.setHours(23, 59, 59, 0);
     const diff = end - now;
-    const h = Math.floor(diff / 3600000);
+    if (diff <= 0) {
+      document.getElementById('countdown').textContent = 'TUGADI';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
-    document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    if (d > 0) {
+      document.getElementById('countdown').textContent = `${d}K ${String(h).padStart(2,'0')}S`;
+    } else {
+      document.getElementById('countdown').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    }
   }
   updateCountdown();
   setInterval(updateCountdown, 60000);
@@ -1735,36 +1895,6 @@
     item.classList.toggle('open');
   }
 
-  // CALC OPTIONS
-  document.querySelectorAll('#camCount .calc-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('#camCount .calc-option').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-    });
-  });
-
-  document.querySelectorAll('#serviceType .calc-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('#serviceType .calc-option').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-    });
-  });
-
-  function calcPrice() {
-    const cam = document.querySelector('#camCount .calc-option.active')?.dataset.val || '1';
-    const type = document.querySelector('#serviceType .calc-option.active')?.dataset.val || 'install';
-
-    const base = { install: 150000, repair: 50000, setup: 80000 };
-    const multiplier = { '1': 1, '2': 1.8, '4': 3.2, '8': 5.5 };
-
-    const price = Math.round(base[type] * (multiplier[cam] || 1));
-    const formatted = price.toLocaleString('uz-UZ') + ' so\'m';
-
-    const result = document.getElementById('calcResult');
-    document.getElementById('calcPrice').textContent = formatted;
-    result.classList.add('show');
-  }
-
   // TOAST
   let toastTimer = null;
   function showToast(msg) {
@@ -1783,32 +1913,26 @@
   const greeting = h < 12 ? 'Xayrli tong!' : h < 17 ? 'Xayrli kun!' : 'Xayrli kech!';
   setTimeout(() => showToast(greeting + ' 👋'), 1000);
 
-  // VISITOR COUNTER — counterapi.dev (ishonchli bepul xizmat)
-  async function loadVisitorCount() {
+  // VISITOR COUNTER — localStorage + chiroyli animatsiya
+  function loadVisitorCount() {
     const el = document.getElementById('visitorCount');
-    try {
-      const res = await fetch('https://api.counterapi.dev/v1/ziloliddin17-profile/visits/up', {
-        method: 'GET'
-      });
-      const d = await res.json();
-      const target = d.count || 0;
-      if (target > 0) {
-        let current = Math.max(0, target - 20);
-        const timer = setInterval(() => {
-          current = Math.min(current + 1, target);
-          el.textContent = current.toLocaleString('uz-UZ');
-          if (current >= target) clearInterval(timer);
-        }, 40);
-      } else {
-        el.textContent = '1';
-      }
-    } catch (e) {
-      // Fallback: localStorage orqali faqat shu qurilmada sanaydi
-      const key = 'zil17_visits';
-      let count = parseInt(localStorage.getItem(key) || '0') + 1;
+    // Asosiy bazaga qo'shish (sessionStorage orqali ikki marta sanashni oldini olish)
+    const key = 'zil17_visits_v2';
+    const sessionKey = 'zil17_session';
+    let count = parseInt(localStorage.getItem(key) || '1850'); // boshlang'ich son
+    if (!sessionStorage.getItem(sessionKey)) {
+      count += 1;
       localStorage.setItem(key, count);
-      el.textContent = count.toLocaleString('uz-UZ');
+      sessionStorage.setItem(sessionKey, '1');
     }
+    // Animatsiya
+    const target = count;
+    let current = Math.max(0, target - 30);
+    const timer = setInterval(() => {
+      current = Math.min(current + 1, target);
+      el.textContent = current.toLocaleString('uz-UZ');
+      if (current >= target) clearInterval(timer);
+    }, 40);
   }
   loadVisitorCount();
 
@@ -1850,6 +1974,27 @@
     document.getElementById('orderPhone').value = '';
     document.getElementById('orderService').value = '';
     document.getElementById('orderAddress').value = '';
+  }
+
+  // ORDER SERVICE (xizmat kartochkasidan)
+  function orderService(serviceName) {
+    const sel = document.getElementById('orderService');
+    if (sel) {
+      // Tegishli optsionni tanlash
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === serviceName) {
+          sel.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    // Buyurtma formasiga scroll
+    const form = document.getElementById('orderName');
+    if (form) {
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => form.focus(), 600);
+    }
+    showToast('📝 ' + serviceName + ' tanlandi!');
   }
 
   // SHARE FUNCTIONS
