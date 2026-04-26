@@ -38,11 +38,25 @@
     body {
       font-family: 'Space Grotesk', sans-serif;
       background: var(--bg);
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       color: var(--text);
       overflow-x: hidden;
+    }
+
+    /* Dark overlay over bg image */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 7, 9, 0.82);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Animated background grid */
